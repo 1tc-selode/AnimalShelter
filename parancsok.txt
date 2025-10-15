@@ -1,0 +1,5 @@
+php index.php add "Bodri" "keverék" 3 "Örökbefogadható"
+php index.php edit 4 --name="Ubul" --status="Örökbefogadva"
+php index.php list
+php index.php search "Bodri"
+php index.php delete 4
