@@ -1,6 +1,4 @@
 <?php
-// index.php – belépési pont, CLI alapú vezérlés
-// Parancsok: list | add | edit | delete
 
 spl_autoload_register(function ($class) {
     $file = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
@@ -12,7 +10,7 @@ spl_autoload_register(function ($class) {
 use App\Models\Animal;
 use App\Services\AnimalManager;
 
-// Adatbázis konfiguráció (.env helyett itt)
+
 $dbHost = 'localhost';
 $dbName = 'animal_shelter_db';
 $dbUser = 'root';
@@ -26,7 +24,7 @@ try {
     die("Hiba az adatbázis-kapcsolatban: " . $ex->getMessage());
 }
 
-// Tábla létrehozása, ha nem létezik
+
 $sql = "
     CREATE TABLE IF NOT EXISTS animals (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,7 +40,7 @@ $pdo->exec($sql);
 
 $manager = new AnimalManager($pdo);
 
-// Parancssori argumentum feldolgozása
+
 $action = $argv[1] ?? 'list';
 
 switch ($action) {

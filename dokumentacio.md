@@ -22,9 +22,21 @@ A rendszer objektumorientált PHP nyelven készült, MySQL adatbázist használ 
 
 ## 3. Fájlszerkezet és rövid leírás
 
+### 3.1 index.php
+**Leírás:** A belépési pont, amely a parancssori argumentumokat kezeli, kapcsolatot létesít az adatbázissal és a `AnimalManager` szolgáltatáson keresztül végrehajtja a CRUD műveleteket.  
+**Funkciók:**
+- Adatbázis kapcsolat létrehozása PDO-val  
+- Tábla létrehozása, ha még nem létezik (`animals`)  
+- Parancssori argumentum feldolgozás:
+  - `list` – az összes állat kilistázása  
+  - `add` – új állat felvétele  
+  - `edit` – meglévő állat adatainak módosítása  
+  - `delete` – állat törlése  
+- A parancsok hívják a `AnimalManager` megfelelő metódusait  
+
 ---
 
-### 3.1 App/Models/Animal.php
+### 3.2 App/Models/Animal.php
 **Leírás:** Az `Animal` osztály reprezentálja az adatbázisban tárolt állatot.  
 **Attribútumok:**
 - `id` – az állat egyedi azonosítója  
@@ -37,5 +49,39 @@ A rendszer objektumorientált PHP nyelven készült, MySQL adatbázist használ 
 - Konstruktor: ellenőrzi, hogy az életkor nem negatív  
 - Getters és Setters: minden attribútumhoz, az életkor módosítása érvényesítéssel  
 - `display()` – formázott szöveges megjelenítés a CLI-hez  
+
+---
+
+### 3.3 App/Services/AnimalManager.php
+**Leírás:** A `AnimalManager` osztály végzi a CRUD műveleteket az `animals` táblán.  
+**Metódusok:**
+
+- `__construct(PDO $pdo)` – adatbázis kapcsolat beállítása  
+- `addAnimal(Animal $animal)` – új állat beszúrása  
+- `listAnimals()` – az összes állat kilistázása, formázott CLI megjelenítéssel  
+- `editAnimal(int $id, array $data)` – állat adatainak módosítása; csak megadott mezőket frissít  
+- `deleteAnimal(int $id)` – állat törlése az ID alapján  
+
+**Hibakezelés:**
+- Ellenőrzi a negatív életkort  
+- Ellenőrzi a létező ID-t a módosítás és törlés esetén  
+- Figyelmeztet, ha nincs módosítandó adat vagy az ID nem található  
+
+---
+
+### 3.2 App/Services/AnimalManager.php
+**Leírás:** A `AnimalManager` osztály végzi a CRUD műveleteket az `animals` táblán.  
+**Metódusok:**
+
+- `__construct(PDO $pdo)` – adatbázis kapcsolat beállítása  
+- `addAnimal(Animal $animal)` – új állat beszúrása  
+- `listAnimals()` – az összes állat kilistázása, formázott CLI megjelenítéssel  
+- `editAnimal(int $id, array $data)` – állat adatainak módosítása; csak megadott mezőket frissít  
+- `deleteAnimal(int $id)` – állat törlése az ID alapján  
+
+**Hibakezelés:**
+- Ellenőrzi a negatív életkort  
+- Ellenőrzi a létező ID-t a módosítás és törlés esetén  
+- Figyelmeztet, ha nincs módosítandó adat vagy az ID nem található  
 
 ---
