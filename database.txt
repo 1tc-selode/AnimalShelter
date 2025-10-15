@@ -1,0 +1,23 @@
+CREATE DATABASE animal_shelter_db;
+
+USE animal_shelter_db;
+
+
+CREATE TABLE animals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    breed VARCHAR(255) NOT NULL,
+    age INT NOT NULL,
+    status VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT NULL
+);
+
+
+INSERT INTO animals (name, breed, age, status)
+VALUES
+('Bodri', 'keverék', 3, 'Örökbefogadható'),
+('Cirmi', 'házimacska', 2, 'Örökbefogadva'),
+('Rex', 'német juhász', 5, 'Örökbefogadható'),
+('Luna', 'vizsla', 1, 'Örökbefogadható'),
+('Tappancs', 'golden retriever', 4, 'Örökbefogadva');
