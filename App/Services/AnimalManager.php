@@ -25,18 +25,6 @@ class AnimalManager {
         echo "Állat sikeresen hozzáadva az adatbázishoz.\n";
     }
 
-    public function listAnimals(): void {
-        $stmt = $this->pdo->query("SELECT * FROM animals ORDER BY id");
-        $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        echo "--- Állatok listája (" . count($animals) . " db) ---\n";
-        foreach ($animals as $row) {
-            $animal = new Animal($row['id'], $row['name'], $row['breed'], $row['age'], $row['status']);
-            echo "ID: {$row['id']} | " . $animal->display() . "\n";
-        }
-        echo "----------------------------------------\n";
-    }
-
     public function editAnimal(int $id, array $data): void {
         if ($id <= 0) {
             echo "Hibás ID.\n";
