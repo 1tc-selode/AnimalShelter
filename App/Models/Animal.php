@@ -19,14 +19,12 @@ class Animal {
         $this->status = $status;
     }
 
-    // Getters
     public function getId(): ?int { return $this->id; }
     public function getName(): string { return $this->name; }
     public function getBreed(): string { return $this->breed; }
     public function getAge(): int { return $this->age; }
     public function getStatus(): string { return $this->status; }
 
-    // Setters
     public function setName(string $name): void { $this->name = $name; }
     public function setBreed(string $breed): void { $this->breed = $breed; }
     public function setAge(int $age): void {
