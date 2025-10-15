@@ -22,16 +22,20 @@ A rendszer objektumorientált PHP nyelven készült, MySQL adatbázist használ 
 
 ## 3. Fájlszerkezet és rövid leírás
 
-### 3.1 index.php
-**Leírás:** A belépési pont, amely a parancssori argumentumokat kezeli, kapcsolatot létesít az adatbázissal és a `AnimalManager` szolgáltatáson keresztül végrehajtja a CRUD műveleteket.  
-**Funkciók:**
-- Adatbázis kapcsolat létrehozása PDO-val  
-- Tábla létrehozása, ha még nem létezik (`animals`)  
-- Parancssori argumentum feldolgozás:
-  - `list` – az összes állat kilistázása  
-  - `add` – új állat felvétele  
-  - `edit` – meglévő állat adatainak módosítása  
-  - `delete` – állat törlése  
-- A parancsok hívják a `AnimalManager` megfelelő metódusait  
+---
+
+### 3.1 App/Models/Animal.php
+**Leírás:** Az `Animal` osztály reprezentálja az adatbázisban tárolt állatot.  
+**Attribútumok:**
+- `id` – az állat egyedi azonosítója  
+- `name` – állat neve  
+- `breed` – állat fajtája  
+- `age` – életkor (év)  
+- `status` – örökbefogadási státusz  
+
+**Metódusok:**
+- Konstruktor: ellenőrzi, hogy az életkor nem negatív  
+- Getters és Setters: minden attribútumhoz, az életkor módosítása érvényesítéssel  
+- `display()` – formázott szöveges megjelenítés a CLI-hez  
 
 ---
